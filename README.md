@@ -1,5 +1,5 @@
-# PDFEditorSDK-WPF
-PDF Editor SDK WPF Sample
+# PDFCoreSDK-WPF
+PDF Core API SDK WPF Sample
 
 To make the sample working do the following steps:
 
