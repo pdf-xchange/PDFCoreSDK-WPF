@@ -264,7 +264,6 @@ namespace WpfSimpleApp
 				pTree.Add("Test", pFS.PDFObject);
 
 				SaveDocument(ref pDoc, fileName);
-
 				if (pDoc != null)
 					pDoc.Close();
 				pDoc = null;
@@ -277,11 +276,9 @@ namespace WpfSimpleApp
 
 		private void SaveDocument(ref PDFXCoreAPI.IPXC_Document pDoc, string fileName)
 		{
-			do
+			try
 			{
 				pDoc.WriteToFile(fileName, null, 0);
-				//LOG(hr, L"Document has been saved to '%s'", (LPCWSTR)sFilename);
-
 				System.Diagnostics.Process openProcess = new System.Diagnostics.Process();
 				openProcess.StartInfo.FileName = fileName;
 				openProcess.StartInfo.UseShellExecute = true;
@@ -290,8 +287,17 @@ namespace WpfSimpleApp
 				openProcess.StartInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Normal;
 				openProcess.Start();
 				openProcess.WaitForExit();
+			}
+			catch (COMException e)
+			{
+				MessageBox.Show(string.Format("Document has been saved to '{0}'. {1}", fileName,e.Message));
+			};
+		}
 
-			} while (false);
+		public CFileMark OpenFile(string fileName)
+		{
+			var doc = g_Inst.OpenDocumentFromFile(fileName, null);
+			return new CFileMark(g_Inst, doc);
 		}
 	}
 

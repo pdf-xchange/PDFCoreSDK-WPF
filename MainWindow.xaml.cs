@@ -53,5 +53,29 @@ namespace WpfSimpleApp
 			smp.Perform(saveFileDialog.FileName);
 		}
 
+		private void button1_Click(object sender, RoutedEventArgs e)
+		{
+			OpenFileDialog openFileDialog = new OpenFileDialog();
+			openFileDialog.DefaultExt = "pdf";
+			openFileDialog.Filter = "PDF files (*.pdf)|*.pdf|All files (*.*)|*.*";
+			openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+			if (openFileDialog.ShowDialog() == false)
+			{
+				MessageBox.Show("User break");
+				return;
+			}
+			CFileMark mrk = smp.OpenFile(openFileDialog.FileName);
+			mrk.Run();
+			SaveFileDialog saveFileDialog = new SaveFileDialog();
+			saveFileDialog.DefaultExt = "pdf";
+			saveFileDialog.Filter = "PDF files (*.pdf)|*.pdf|All files (*.*)|*.*";
+			saveFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+			if (saveFileDialog.ShowDialog() == false)
+			{
+				MessageBox.Show("User break");
+				return;
+			}
+			mrk.SaveFile(saveFileDialog.FileName);
+		}
 	}
 }
