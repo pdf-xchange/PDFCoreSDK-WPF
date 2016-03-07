@@ -255,13 +255,13 @@ namespace WpfSimpleApp
 				pPage = null;
 
 
-				// Adding file attachment
-				PDFXCoreAPI.IPXC_NameTree pTree = pDoc.GetNameTree("EmbeddedFiles");
-				string filePath = System.IO.Directory.GetParent(System.Environment.CurrentDirectory).Parent.FullName + "\\TestFile.pdf";
-				PDFXCoreAPI.IPXC_FileSpec pFS = pDoc.CreateEmbeddFile("Test.pdf");
-				PDFXCoreAPI.IPXC_EmbeddedFileStream pEFS = pFS.EmbeddedFile;
-				pEFS.UpdateFromFile2(filePath);
-				pTree.Add("Test", pFS.PDFObject);
+				//// Adding file attachment
+				//PDFXCoreAPI.IPXC_NameTree pTree = pDoc.GetNameTree("EmbeddedFiles");
+				//string filePath = System.IO.Directory.GetParent(System.Environment.CurrentDirectory).Parent.FullName + "\\TestFile.pdf";
+				//PDFXCoreAPI.IPXC_FileSpec pFS = pDoc.CreateEmbeddFile("Test.pdf");
+				//PDFXCoreAPI.IPXC_EmbeddedFileStream pEFS = pFS.EmbeddedFile;
+				//pEFS.UpdateFromFile2(filePath);
+				//pTree.Add("Test", pFS.PDFObject);
 
 				SaveDocument(ref pDoc, fileName);
 				if (pDoc != null)
